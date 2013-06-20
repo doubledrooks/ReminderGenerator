@@ -7,15 +7,25 @@
 //
 
 #import "AppDelegate.h"
-#import "ReminderViewController.h"
+#import "EditRemindersViewController.h"
+#import "RemindersViewController.h"
 
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    UITabBarController *tabBarController = [UITabBarController new];
+    
+    EditRemindersViewController *editRemindersViewController = [EditRemindersViewController new];
+    RemindersViewController *remindersViewController = [RemindersViewController new];
+    
+    NSArray* controllers = @[editRemindersViewController, remindersViewController];
+    tabBarController.viewControllers = controllers;
+    
+    [[[[tabBarController tabBar] items] objectAtIndex:0] setTitle:@"Edit"];
+    [[[[tabBarController tabBar] items] objectAtIndex:1] setTitle:@"View"];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.window.rootViewController = [ReminderViewController new];
+    self.window.rootViewController = tabBarController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

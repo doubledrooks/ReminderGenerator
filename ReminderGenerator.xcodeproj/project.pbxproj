@@ -16,9 +16,11 @@
 		1F2BB1921772ACA000BF1B4A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F2BB1911772ACA000BF1B4A /* Default.png */; };
 		1F2BB1941772ACA000BF1B4A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F2BB1931772ACA000BF1B4A /* Default@2x.png */; };
 		1F2BB1961772ACA000BF1B4A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F2BB1951772ACA000BF1B4A /* Default-568h@2x.png */; };
-		1F2BB19F1772AD5400BF1B4A /* ReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2BB19D1772AD5400BF1B4A /* ReminderViewController.m */; };
-		1F2BB1A01772AD5400BF1B4A /* ReminderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2BB19E1772AD5400BF1B4A /* ReminderViewController.xib */; };
+		1F2BB19F1772AD5400BF1B4A /* EditRemindersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2BB19D1772AD5400BF1B4A /* EditRemindersViewController.m */; };
+		1F2BB1A01772AD5400BF1B4A /* EditRemindersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2BB19E1772AD5400BF1B4A /* EditRemindersViewController.xib */; };
 		1F2BB1A21772AF0400BF1B4A /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2BB1A11772AF0400BF1B4A /* EventKit.framework */; };
+		1F2BB1A61772CDEF00BF1B4A /* RemindersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2BB1A41772CDEF00BF1B4A /* RemindersViewController.m */; };
+		1F2BB1A71772CDEF00BF1B4A /* RemindersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2BB1A51772CDEF00BF1B4A /* RemindersViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,10 +37,13 @@
 		1F2BB1911772ACA000BF1B4A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		1F2BB1931772ACA000BF1B4A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		1F2BB1951772ACA000BF1B4A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		1F2BB19C1772AD5400BF1B4A /* ReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReminderViewController.h; sourceTree = "<group>"; };
-		1F2BB19D1772AD5400BF1B4A /* ReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReminderViewController.m; sourceTree = "<group>"; };
-		1F2BB19E1772AD5400BF1B4A /* ReminderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReminderViewController.xib; sourceTree = "<group>"; };
+		1F2BB19C1772AD5400BF1B4A /* EditRemindersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditRemindersViewController.h; sourceTree = "<group>"; };
+		1F2BB19D1772AD5400BF1B4A /* EditRemindersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditRemindersViewController.m; sourceTree = "<group>"; };
+		1F2BB19E1772AD5400BF1B4A /* EditRemindersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditRemindersViewController.xib; sourceTree = "<group>"; };
 		1F2BB1A11772AF0400BF1B4A /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		1F2BB1A31772CDEF00BF1B4A /* RemindersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemindersViewController.h; sourceTree = "<group>"; };
+		1F2BB1A41772CDEF00BF1B4A /* RemindersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemindersViewController.m; sourceTree = "<group>"; };
+		1F2BB1A51772CDEF00BF1B4A /* RemindersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RemindersViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,9 +95,12 @@
 				1F2BB18E1772ACA000BF1B4A /* AppDelegate.h */,
 				1F2BB18F1772ACA000BF1B4A /* AppDelegate.m */,
 				1F2BB1861772ACA000BF1B4A /* Supporting Files */,
-				1F2BB19C1772AD5400BF1B4A /* ReminderViewController.h */,
-				1F2BB19D1772AD5400BF1B4A /* ReminderViewController.m */,
-				1F2BB19E1772AD5400BF1B4A /* ReminderViewController.xib */,
+				1F2BB19C1772AD5400BF1B4A /* EditRemindersViewController.h */,
+				1F2BB19D1772AD5400BF1B4A /* EditRemindersViewController.m */,
+				1F2BB19E1772AD5400BF1B4A /* EditRemindersViewController.xib */,
+				1F2BB1A31772CDEF00BF1B4A /* RemindersViewController.h */,
+				1F2BB1A41772CDEF00BF1B4A /* RemindersViewController.m */,
+				1F2BB1A51772CDEF00BF1B4A /* RemindersViewController.xib */,
 			);
 			path = ReminderGenerator;
 			sourceTree = "<group>";
@@ -166,7 +174,8 @@
 				1F2BB1921772ACA000BF1B4A /* Default.png in Resources */,
 				1F2BB1941772ACA000BF1B4A /* Default@2x.png in Resources */,
 				1F2BB1961772ACA000BF1B4A /* Default-568h@2x.png in Resources */,
-				1F2BB1A01772AD5400BF1B4A /* ReminderViewController.xib in Resources */,
+				1F2BB1A01772AD5400BF1B4A /* EditRemindersViewController.xib in Resources */,
+				1F2BB1A71772CDEF00BF1B4A /* RemindersViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,7 +188,8 @@
 			files = (
 				1F2BB18C1772ACA000BF1B4A /* main.m in Sources */,
 				1F2BB1901772ACA000BF1B4A /* AppDelegate.m in Sources */,
-				1F2BB19F1772AD5400BF1B4A /* ReminderViewController.m in Sources */,
+				1F2BB19F1772AD5400BF1B4A /* EditRemindersViewController.m in Sources */,
+				1F2BB1A61772CDEF00BF1B4A /* RemindersViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +306,7 @@
 				1F2BB19B1772ACA000BF1B4A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

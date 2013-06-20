@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ReminderViewController : UIViewController
+@interface EditRemindersViewController : UIViewController
 
 - (IBAction)didTapCreateReminderButton:(id)sender;
-- (IBAction)didTapDeleteAllButton:(id)sender;
+- (IBAction)didTapDeleteAllRemindersButton:(id)sender;
+- (IBAction)didTapCreateReminderInLists:(id)sender;
+
 @property (strong, nonatomic) IBOutlet UILabel *flashLabel;
+@property (strong, nonatomic) IBOutlet UIView *flashView;
 
 @end
