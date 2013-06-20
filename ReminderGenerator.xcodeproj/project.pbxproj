@@ -21,6 +21,7 @@
 		1F2BB1A21772AF0400BF1B4A /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2BB1A11772AF0400BF1B4A /* EventKit.framework */; };
 		1F2BB1A61772CDEF00BF1B4A /* RemindersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2BB1A41772CDEF00BF1B4A /* RemindersViewController.m */; };
 		1F2BB1A71772CDEF00BF1B4A /* RemindersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F2BB1A51772CDEF00BF1B4A /* RemindersViewController.xib */; };
+		1F2BB1A91772D78500BF1B4A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1F2BB1A81772D78500BF1B4A /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		1F2BB1A31772CDEF00BF1B4A /* RemindersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemindersViewController.h; sourceTree = "<group>"; };
 		1F2BB1A41772CDEF00BF1B4A /* RemindersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemindersViewController.m; sourceTree = "<group>"; };
 		1F2BB1A51772CDEF00BF1B4A /* RemindersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RemindersViewController.xib; sourceTree = "<group>"; };
+		1F2BB1A81772D78500BF1B4A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 		1F2BB1731772AC9F00BF1B4A = {
 			isa = PBXGroup;
 			children = (
+				1F2BB1A81772D78500BF1B4A /* README.md */,
 				1F2BB1A11772AF0400BF1B4A /* EventKit.framework */,
 				1F2BB1851772ACA000BF1B4A /* ReminderGenerator */,
 				1F2BB17E1772ACA000BF1B4A /* Frameworks */,
@@ -176,6 +179,7 @@
 				1F2BB1961772ACA000BF1B4A /* Default-568h@2x.png in Resources */,
 				1F2BB1A01772AD5400BF1B4A /* EditRemindersViewController.xib in Resources */,
 				1F2BB1A71772CDEF00BF1B4A /* RemindersViewController.xib in Resources */,
+				1F2BB1A91772D78500BF1B4A /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
