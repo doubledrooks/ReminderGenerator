@@ -11,12 +11,15 @@
 
 @interface EditRemindersViewController ()
 
+@property(strong, nonatomic) EKEventStore *eventStore;
+
 @end
 
 @implementation EditRemindersViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.eventStore = [EKEventStore new];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -24,28 +27,31 @@
     self.flashView.alpha = 0;
 }
 
-- (IBAction)didTapCreateReminderButton:(id)sender {
-    EKEventStore *eventStore = [EKEventStore new];
+- (void) dealloc {
+    self.eventStore = nil;
+}
 
-    [eventStore requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error) {
+#pragma mark - Button Actions
+
+- (IBAction)didTapCreateReminderButton:(id)sender {
+    [self.eventStore requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (granted) {
-                NSArray *reminders = @[
-                    @{@"title": @"Go to Google", @"notes": @""},
-                    @{@"title": @"Go to Amazon", @"notes": @""},
-                    @{@"title": @"Go to Apple", @"notes": @""},
-                ];
-            
-                EKCalendar *calendar = [eventStore defaultCalendarForNewReminders];
-                for (NSDictionary *reminderInfo in reminders) {
-                    NSLog(@"Creating reminder titled %@", reminderInfo[@"title"]);
-                    EKReminder *reminder = [EKReminder reminderWithEventStore:eventStore];
-                    reminder.calendar = calendar;
-                    reminder.title = reminderInfo[@"title"];
-                    reminder.notes = reminderInfo[@"notes"];
-                    [eventStore saveReminder:reminder commit:YES error:nil];
+                NSDictionary *remindersPlist = [NSDictionary
+                    dictionaryWithContentsOfFile:[[NSBundle mainBundle]
+                        pathForResource:@"Reminders"
+                        ofType:@"plist"]];
+ 
+                EKCalendar *calendar = [self.eventStore defaultCalendarForNewReminders];
+                NSInteger index = 0;
+                for(NSString *key in remindersPlist) {
+                    for (NSDictionary *reminderInfo in [remindersPlist objectForKey:key]) {
+                        [self createReminder:reminderInfo inCalendar:calendar];
+                        index++;
+                    }
                 }
-                [self setFlash:[NSString stringWithFormat:@"%d reminders were created", reminders.count]];
+
+                [self setFlash:[NSString stringWithFormat:@"%d reminders were created", index]];
             }
             else {
                 self.flashLabel.text = @"Permission Denied";
@@ -54,45 +60,24 @@
     }];
 }
 
-
 - (IBAction)didTapCreateReminderInLists:(id)sender {
-    EKEventStore *eventStore = [EKEventStore new];
-
-    [eventStore requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error) {
+    [self.eventStore requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (granted) {
-                NSDictionary *calendars = @{
-                    @"Personal": @[
-                        @{@"title": @"Learn to juggle", @"notes": @""},
-                        @{@"title": @"Climb more", @"notes": @""},
-                        @{@"title": @"Lose 10 pounds", @"notes": @""},
-                    ],
-                    @"Responsibilities": @[
-                        @{@"title": @"Mow lawn", @"notes": @""},
-                        @{@"title": @"Pay bills", @"notes": @""},
-                        @{@"title": @"Fix car", @"notes": @""},
-                    ],
-                    @"Relationships": @[
-                        @{@"title": @"Call mom", @"notes": @""},
-                        @{@"title": @"Check in with Adam", @"notes": @""},
-                        @{@"title": @"Send dad birthday card", @"notes": @""},
-                    ],
-                };
-            
+                NSDictionary *calendars = [NSDictionary
+                    dictionaryWithContentsOfFile:[[NSBundle mainBundle]
+                        pathForResource:@"Reminders"
+                        ofType:@"plist"]];
+
                 NSInteger reminderCount = 0;
                 NSInteger calendarCount = calendars.count;
 
                 for (NSString *calendarName in calendars) {
                     NSLog(@"Creating calendar named %@", calendarName);
-                    EKCalendar *calendar = [self createCalendarWithName:calendarName withEventStore:eventStore];
+                    EKCalendar *calendar = [self createCalendarWithName:calendarName withEventStore:self.eventStore];
                     NSArray *reminders = [calendars objectForKey:calendarName];
                     for(NSDictionary *reminderInfo in reminders) {
-                        NSLog(@"  creating reminder titled %@", reminderInfo[@"title"]);
-                        EKReminder *reminder = [EKReminder reminderWithEventStore:eventStore];
-                        reminder.calendar = calendar;
-                        reminder.title = reminderInfo[@"title"];
-                        reminder.notes = reminderInfo[@"notes"];
-                        [eventStore saveReminder:reminder commit:YES error:nil];
+                        [self createReminder:reminderInfo inCalendar:calendar];
                         reminderCount++;
                     }
                 }
@@ -106,15 +91,13 @@
 }
 
 - (IBAction)didTapDeleteAllRemindersButton:(id)sender {
-    EKEventStore *eventStore = [EKEventStore new];
-
-    [eventStore requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error) {
+    [self.eventStore requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (granted) {
-                NSArray *calendars = [eventStore calendarsForEntityType:EKEntityTypeReminder];
+                NSArray *calendars = [self.eventStore calendarsForEntityType:EKEntityTypeReminder];
                 for(EKCalendar *calendar in calendars) {
                     NSLog(@"Deleting calendar named %@", calendar.title);
-                    [eventStore removeCalendar:calendar commit:YES error:nil];
+                    [self.eventStore removeCalendar:calendar commit:YES error:nil];
                 }
                 [self setFlash:[NSString stringWithFormat:@"%d Reminder lists were deleted", calendars.count]];
             }
@@ -124,6 +107,8 @@
         });
     }];
 }
+
+#pragma mark - Private Methods
 
 - (EKCalendar *)createCalendarWithName:(NSString *)calendarName withEventStore:(EKEventStore *)eventStore {
     EKCalendar* calendar;
@@ -147,6 +132,15 @@
         NSLog(@"%@", error.description);
     }
     return calendar;
+}
+
+- (void)createReminder:(NSDictionary *)reminderInfo inCalendar:(EKCalendar *)calendar {
+    NSLog(@"Creating reminder titled %@", reminderInfo[@"Title"]);
+    EKReminder *reminder = [EKReminder reminderWithEventStore:self.eventStore];
+    reminder.calendar = calendar;
+    reminder.title = reminderInfo[@"Title"];
+    reminder.notes = reminderInfo[@"Notes"];
+    [self.eventStore saveReminder:reminder commit:YES error:nil];
 }
 
 - (void)setFlash:(NSString *)message {
