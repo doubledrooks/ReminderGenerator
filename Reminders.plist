@@ -21,6 +21,18 @@
 	<array>
 		<dict>
 			<key>Title</key>
+			<string>Learn more about NSCoding</string>
+			<key>Notes</key>
+			<string>https://developer.apple.com/library/mac/#documentation/cocoa/reference/foundation/Protocols/NSCoding_Protocol/Reference/Reference.html</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>Subscribe to Ruby Tapas</string>
+			<key>Notes</key>
+			<string>http://www.rubytapas.com/</string>
+		</dict>
+		<dict>
+			<key>Title</key>
 			<string>Watch Sandi Metz on testing</string>
 			<key>Notes</key>
 			<string>http://www.confreaks.com/videos/2452-railsconf2013-the-magic-tricks-of-testing</string>
